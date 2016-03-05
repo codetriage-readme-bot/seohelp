@@ -21,11 +21,18 @@ module Seohelp
 			doc = Nokogiri::HTML(html)
 
 			# analyze web page
-			title = doc.at_css('title').content
-			if title.length > 160
+			title = doc.at_css('title')
+			if title && title.content.length > 160
 				@warnings << "Title should be shorter than 160 characters"
 			end
 			
+			description = doc.at_css('meta[name=description]')
+			if !description
+				@warnings << "Description meta tag not found"
+			elsif description.attributes['value'].value.length == 0
+				@warnings << "Empty description meta tag"
+			end
+
 			return @warnings
 		end
 
