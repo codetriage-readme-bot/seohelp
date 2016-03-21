@@ -1,39 +1,36 @@
 require 'nokogiri'
 require 'open-uri'
 
+require 'check'
+
 module Seohelp
 
 	def self.run(page)
-		a = Analyzer.new(page)
-		a.analyze
+		check_list = CheckList.new(page)
+		check_list.check_all
 	end
 
-	class Analyzer
+	class CheckList
 
 		def initialize(page)
 			@page = page
 			@warnings = []
 		end
 
-		def analyze
-			# obtain html
+		def check_all
+			# get html
 			html = @page =~ /^http/ ? open(@page) : File.open(@page) 
 			doc = Nokogiri::HTML(html)
 
-			# analyze web page
-			title = doc.at_css('title')
-			if title && title.content.length > 160
-				@warnings << "Title should be shorter than 160 characters"
-			end
-			
-			description = doc.at_css('meta[name=description]')
-			if !description
-				@warnings << "Description meta tag not found"
-			elsif description.attributes['value'].value.length == 0
-				@warnings << "Empty description meta tag"
+			# get checks, implemented in checks folder 
+			Dir[File.join(File.dirname(__FILE__), 'checks', '*.rb')].each do |file|
+			 	require file
+				klass = File.basename(file, '.rb').split('_').map{|s| s.capitalize}.join
+				check = eval(klass).new(doc)
+				@warnings += check.check
 			end
 
-			return @warnings
+			@warnings
 		end
 
 	end
