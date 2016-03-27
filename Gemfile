@@ -5,3 +5,4 @@ source 'https://rubygems.org'
 gem 'rake'
 gem 'nokogiri'
 gem 'test-unit'
+gem 'rubocop', require: false
