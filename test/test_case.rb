@@ -1,3 +1,5 @@
+##
+# Seohelp::TestCase class
 module Seohelp
   begin
     require 'minitest/autorun'
@@ -11,11 +13,14 @@ module Seohelp
   rescue LoadError
     # 1.8.7
     require 'test/unit'
+    # not using minitest
     class TestCase < Test::Unit::TestCase
       def default_test; end
     end
   end
 
+  ##
+  # Base class for any test case
   class TestCase
     class << self
       def setup(&block)
