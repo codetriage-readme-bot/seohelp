@@ -7,7 +7,8 @@ module Seohelp
       description = @doc.at_css('meta[name=description]')
       if !description
         @warnings << 'Description meta tag not found'
-      elsif description.attributes['value'].value.empty?
+      elsif description.attributes['content'].nil? ||
+            description.attributes['content'].value.empty?
         @warnings << 'Empty description meta tag'
       end
 
