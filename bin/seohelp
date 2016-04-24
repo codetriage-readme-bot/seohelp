@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'seohelp'
+require 'seohelp/version'
+
+usage = 'Usage: seohelp [options] url'
+
+OptionParser.new do |opts|
+  opts.banner = usage
+  opts.on('-v', '--version') do
+    puts "Seohelp v#{Seohelp::VERSION}"
+    exit(0)
+  end
+end.parse!
+
+page = ARGV.shift
+abort usage unless page
+
+warnings = Seohelp.run(page)
+
+if warnings.empty?
+  puts 'No improvements detected'
+else
+  puts warnings
+end
