@@ -1,7 +1,8 @@
 module Seohelp
   ##
   # Page meta description check
-  # Must be present, must not be empty
+  # - must be present
+  # - must not be empty
   class DescriptionCheck < Seohelp::Check
     def check
       description = @doc.at_css('meta[name=description]')
