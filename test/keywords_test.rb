@@ -10,11 +10,11 @@ class KeywordsTest < Seohelp::TestCase
   end
 
   test 'warn when keywords present but empty' do
-    wrong_html = fixture 'empty_keywords_page.html'
+    wrong_html = fixture 'keywords/empty_keywords_page.html'
     warnings = Seohelp.run(wrong_html)
     assert_includes warnings, 'Empty keywords meta tag'
 
-    wrong_html = fixture 'empty_keywords_page2.html'
+    wrong_html = fixture 'keywords/empty_keywords_page2.html'
     warnings = Seohelp.run(wrong_html)
     assert_includes warnings, 'Empty keywords meta tag'
   end
