@@ -2,7 +2,7 @@ require 'test_helper'
 
 ##
 # Description check tests
-class KeywordsTest < Seohelp::TestCase
+class MetaKeywordsTest < Seohelp::TestCase
   test 'warn when no meta keywords present' do
     wrong_html = fixture 'wrong_page.html'
     warnings = Seohelp.run(wrong_html)
