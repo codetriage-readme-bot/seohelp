@@ -10,7 +10,11 @@ class DescriptionTest < Seohelp::TestCase
   end
 
   test 'warn when description present but empty' do
-    wrong_html = fixture 'empty_description_page.html'
+    wrong_html = fixture 'description/empty_description_page.html'
+    warnings = Seohelp.run(wrong_html)
+    assert_includes warnings, 'Empty description meta tag'
+
+    wrong_html = fixture 'description/empty_description_page2.html'
     warnings = Seohelp.run(wrong_html)
     assert_includes warnings, 'Empty description meta tag'
   end
