@@ -25,10 +25,10 @@ module Seohelp
       # get checks, implemented in checks folder, and run them
       Dir[File.join(File.dirname(__FILE__), 'checks', '*.rb')].each do |file|
         require file
-        file_name = File.basename(file, '.rb')
-        class_name = "Seohelp::#{file_name.split('_').map(&:capitalize).join}"
-        check = Object.const_get(class_name).new(@doc)
-        @warnings += check.check
+        check_file   = File.basename(file, '.rb')
+        check_class  = "Seohelp::#{check_file.split('_').map(&:capitalize).join}"
+        check_object = Object.const_get(check_class).new(@doc)
+        @warnings    += check_object.check
       end
 
       @warnings

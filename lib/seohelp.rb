@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require 'i18n'
 
 require 'seohelp/check'
 require 'seohelp/check_list'

@@ -6,3 +6,4 @@ gem 'rake'
 gem 'nokogiri'
 gem 'test-unit'
 gem 'rubocop', require: false
+gem 'i18n'
