@@ -2,7 +2,6 @@ module Seohelp
   ##
   # Images alternate text check
   # - each image must have a non empty alternate text attribute
-  # - must not be empty
   class ImagesAlternativeTextCheck < Seohelp::Check
     def check
       images_without_alternate_text = []
