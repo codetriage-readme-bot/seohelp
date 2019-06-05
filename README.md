@@ -3,6 +3,7 @@
 A Ruby gem to check a web site for SEO best practices
 
 [![Build Status](https://travis-ci.org/dormi/seohelp.svg?branch=master)](https://travis-ci.org/dormi/seohelp)
+[![Open Source Helpers](https://www.codetriage.com/dormi/seohelp/badges/users.svg)](https://www.codetriage.com/dormi/seohelp)
 
 ## Installation
 
